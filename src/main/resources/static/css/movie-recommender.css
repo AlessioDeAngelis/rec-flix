@@ -1,9 +1,16 @@
-html {
+div#movie-container{
     background: #333;
-    color: #ddd;
+    color: red;
 }
 
 img .carousel-img {
-    width: 10%;
-    height: 10%;
+    width: 1%;
+    height: 1%;
+}
+
+#recommenders{
+    color: #ddd;
+}
+
+#whitehall-flix-logo{
 }

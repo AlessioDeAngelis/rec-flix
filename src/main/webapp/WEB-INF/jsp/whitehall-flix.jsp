@@ -25,7 +25,7 @@
                 for (var recommenderId = 0; recommenderId < recommendations.length; recommenderId++) {
                     var recommendation = recommendations[recommenderId];
                     //add the recommendation title
-                    $("#recommenders").append("<div class='row'><h1>" + recommendation.name + "</h1></div>");
+                    $("#recommenders").append("<div class='row'><h2>" + recommendation.name + "</h2></div>");
                     //add the carousel for the current recommender
                     $("#recommenders").append("<div class='row'><div id='recommenderCarousel" + recommenderId + "' class='owl-carousel owl-theme'></div></div>");
                     //adding the recommended movies
@@ -55,7 +55,8 @@
         });
     });
 </script>
-<div class="container">
+<div class="container-fluid" id="movie-container">
+    <div class="row"><h1 id="whitehall-flix-logo strong large">WHITEHALL-FLIX</h1></div>
     <div id="recommenders"></div>
 </div>
 </body>
