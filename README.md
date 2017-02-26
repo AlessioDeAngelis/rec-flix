@@ -44,7 +44,6 @@ according to her interests and preferences
  friends interests  
  
  You can add more entries! Let your creativity flow! :D
-
 4. Run the application with your favourite IDE or build it with   
 mvn clean install -Dmaven.test.skip=true and then run it with
 java -jar target/whitehall-flix-0.0.1-SNAPSHOT.jar
