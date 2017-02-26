@@ -1,6 +1,6 @@
 # WHITEHALL-FLIX
 Simple Netflix-style Recommender System leveraging on Neo4j 3.1 
-and Spring, made for educational purposes.  
+and Spring, made for fun and educational purposes.  
 
 The sample movies are taken from the **The Open Movie Database**,  http://www.omdbapi.com/.
 You can find the dataset in the file **movies.json** within the
@@ -16,12 +16,12 @@ An example is
 ```json
 {
   "name": "BEST ITALIAN COMEDIES",
-  "query": "MATCH (c:Country)<-[:fromCountry]-(n:Movie)-[:hasGenre]->(g:Genre) where g.name = 'Comedy' and c.name = 'Italy' RETURN n.imdbID as imdbID, n.title as title, n.poster as poster LIMIT 25"
+  "query": "MATCH (c:Country)<-[:PRODUCTED_IN]-(n:Movie)-[:HAS_GENRE]->(g:Genre) where g.name = 'Comedy' and c.name = 'Italy' RETURN n.poster as poster LIMIT 25"
 }
 ```
 
-Note that the application expects the Cypher query to return the following
-three variables: **imdbID**, **title** and **poster** where poster is the image url.
+Note that the application expects the Cypher query to return the variable named **poster**.
+It is the image url and the application will use it to render the movie on the screen.
 
 ## The challenge ##
 1. Download Whitehall-flix application
@@ -34,3 +34,16 @@ neo4j.uri=bolt://localhost:7687
 neo4j.username=neo4j  
 neo4j.password=neo4j  
 ```
+3.Modify the recommendation.json in order to provide recommendations.
+The challenge requires you to provide the following recommendations:
+*MOST POPULAR movies in the dataset  
+*SIMILAR TO WHAT YOU WATCHED: the movies that should be recommended to the user
+according to her interests and preferences   
+*YOUR FRIENDS LOVED THOSE: the movies that should be recommended according to the
+ friends interests  
+ 
+ You can add more entries! Let your creativity flow! :D
+
+4. Run the application with your favourite IDE or build it with   
+mvn clean install -Dmaven.test.skip=true and then run it with
+java -jar target/whitehall-flix-0.0.1-SNAPSHOT.jar
