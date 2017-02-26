@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -41,6 +43,14 @@ public class HomeController {
         mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         OMDBMovieList omdbMovieList = mapper.readValue(inputStream, OMDBMovieList.class);
         return omdbMovieList;
+    }
+
+    @RequestMapping("/userRatings")
+    @ResponseBody
+    public String retrieveUserRatings() throws IOException {
+        InputStream inputStream = new ClassPathResource("ratings.csv").getInputStream();
+        String ratings = StreamUtils.copyToString(inputStream, Charset.defaultCharset());
+        return ratings;
     }
 
     @RequestMapping("/")

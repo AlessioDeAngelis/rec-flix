@@ -1,10 +1,22 @@
 [
   {
     "name": "NEW ENTRIES",
-    "query": "MATCH (n:Movie) RETURN n.imdbID as imdbID, n.title as title, n.poster as poster LIMIT 25"
+    "query": "MATCH (n:Movie) RETURN  n.poster as poster LIMIT 25"
   },
   {
     "name": "BEST ITALIAN COMEDIES",
-    "query": "MATCH (c:Country)<-[:fromCountry]-(n:Movie)-[:hasGenre]->(g:Genre) where g.name = 'Comedy' and c.name = 'Italy' RETURN n.imdbID as imdbID, n.title as title, n.poster as poster LIMIT 25"
+    "query": "MATCH (c:Country)<-[:PRODUCTED_IN]-(n:Movie)-[:HAS_GENRE]->(g:Genre) where g.name = 'Comedy' and c.name = 'Italy' RETURN n.imdbID as imdbID, n.title as title, n.poster as poster LIMIT 25"
+  },
+  {
+    "name": "MOST POPULAR",
+    "query": ""
+  },
+  {
+    "name": "SIMILAR TO WHAT YOU WATCHED",
+    "query": ""
+  },
+  {
+    "name": "YOUR FRIENDS LOVED THOSE",
+    "query": ""
   }
 ]
