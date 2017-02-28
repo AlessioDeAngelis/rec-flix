@@ -11,12 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +25,7 @@ import java.util.List;
 /**
  * @author a.deangelis
  */
-@RestController
+@Controller
 public class HomeController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class HomeController {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    @RequestMapping("/findMovies")
+    @GetMapping("/findMovies")
     @ResponseBody
     public OMDBMovieList retrieveOMDBMovie() throws IOException {
         InputStream inputStream = new ClassPathResource("movies.json").getInputStream();
@@ -45,7 +44,7 @@ public class HomeController {
         return omdbMovieList;
     }
 
-    @RequestMapping("/userRatings")
+    @GetMapping("/userRatings")
     @ResponseBody
     public String retrieveUserRatings() throws IOException {
         InputStream inputStream = new ClassPathResource("ratings.csv").getInputStream();
@@ -53,12 +52,12 @@ public class HomeController {
         return ratings;
     }
 
-    @RequestMapping("/")
-    public ModelAndView home() throws IOException {
-        return new ModelAndView("whitehall-flix");
+    @GetMapping("/")
+    public String home() throws IOException {
+        return "index";
     }
 
-    @RequestMapping("/recommend")
+    @GetMapping("/recommend")
     @ResponseBody
     @CrossOrigin
     public Recommendations recommend() throws IOException {
