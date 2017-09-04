@@ -1,4 +1,3 @@
-# WHITEHALL-FLIX
 Simple Netflix-style Recommender System leveraging on Neo4j 3.1 
 and Spring, made for fun and educational purposes.  
 
